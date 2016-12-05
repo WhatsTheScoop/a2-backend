@@ -15,7 +15,7 @@
             <th>Cost of Sales Ingredients consumed</th>
             <td>{costofingredientsused}</td>
         </tr>
-
+           
     </form>
 </table>
     <br>
