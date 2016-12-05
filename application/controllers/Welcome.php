@@ -17,6 +17,14 @@ class Welcome extends Application
 	 * map to /welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+
+function __construct()
+	{
+		parent::__construct();
+		$this->load->model('supplies');
+	}
+
+
 	public function index()
 	{
         $this->data['header'] = 'header';
@@ -29,6 +37,10 @@ class Welcome extends Application
         $this->data['costofingredientsused'] = "$".number_format(210.21,2);
         
         $this->data['pagebody'] = 'welcome_message';
+		
+		//used for testing model values returned;
+		//$this->data['pagebody'] = var_dump($this->supplies->add(1, 2));
+		
         $this->render(); 
 	}
 
