@@ -28,6 +28,15 @@ class Supplies extends CI_Model{
 		parent::__construct();
 	}
 
+	public function all(){
+		$item = $this->db->query('Select * from supplies');
+		return $item->result_array();
+	}
+	public function get($id){
+		$item = $this->db->query('Select * from supplies where id = '. $id);
+		return $item->result();
+	}
+
 	// get number of ingredient on hand
 	public function getOnHand($id) {
 		$item = $this->db->query('Select * from supplies where id = '. $id);
@@ -44,6 +53,11 @@ class Supplies extends CI_Model{
 	//receive an item
 	public function add($id, $numOfBoxes){
 		$item = $this->db->query('SELECT * FROM supplies WHERE id = '. $id);
+		//check if id valid
+		if($item.row() == null){
+			return 1;
+		}
+
 		$itemName = $item->row()->name;
 		$stock =  $item->row()->onHand;
 		$boxSize = $item->row()->perBox;
@@ -51,16 +65,21 @@ class Supplies extends CI_Model{
 		$this->db->query('UPDATE supplies SET onHand = ' . $val . ' WHERE id = '. $id);
 
 		//update log
-		 $data = 'RECEIVED:'.$numOfBoxes.' Boxe(s) of ' . $itemName .' on ' . date("Y/m/d") . "\n";
+		$data = 'RECEIVED:'.$numOfBoxes.' Boxe(s) of ' . $itemName .' on ' . date("Y/m/d") . "\n";
 		if ( !write_file(APPPATH.'/logs/inventory.txt', $data, 'a')){
 		     echo 'Unable to write the file';
 		}
+		return 0;
 	}
 
 	// this could be moded to take in a recipe?
 	//use item from stocklist
 	public function use($id, $numTaken){
 		$item = $this->db->query('SELECT * FROM supplies WHERE id = '. $id);
+		//check if id valid
+		if($item.row() == null){
+			return 1;
+		}
 		$stock =  $item->row()->onHand;
 		$val = $stock - $numTaken;
 		$this->db->query('UPDATE supplies SET onHand = ' . $val . ' WHERE id = '. $id);
@@ -70,5 +89,6 @@ class Supplies extends CI_Model{
 		if ( !write_file(APPPATH.'/logs/inventory.txt', $data, 'a')){
 		     echo 'Unable to write the file';
 		}
+		return 0;
 	}
 }
