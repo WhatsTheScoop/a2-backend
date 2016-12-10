@@ -52,9 +52,10 @@ class Supplies extends CI_Model{
 
 	//receive an item
 	public function add($id, $numOfBoxes){
-		$item = $this->db->query('SELECT * FROM supplies WHERE id = '. $id);
+		
+		$item = $this->db->query('Select * from supplies where id = '. $id);
 		//check if id valid
-		if($item.row() == null){
+		if($item->row() == null){
 			return 1;
 		}
 
@@ -77,7 +78,7 @@ class Supplies extends CI_Model{
 	public function use($id, $numTaken){
 		$item = $this->db->query('SELECT * FROM supplies WHERE id = '. $id);
 		//check if id valid
-		if($item.row() == null){
+		if($item->row() == null){
 			return 1;
 		}
 		$stock =  $item->row()->onHand;

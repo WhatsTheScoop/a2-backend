@@ -18,7 +18,7 @@ class SuppliesAPI extends Rest_Controller {
     //GET SPECIFIC INGREDIENTS
     //~/suppliesAPI/item/id/value
     //~/suppliesAPI/item
-    function item_get($id){
+    function item_get(){
         $id = $this->get('id');
         if(!$id)
             $result = $this->supplies->all();
@@ -54,7 +54,7 @@ class SuppliesAPI extends Rest_Controller {
     //ADDS THE NUMBER OF BOXES RECEIVED/ UPDATES ONHAND
     //***NOTE NUMBER PASSED IS THE NUMBER OF BOXES!!!
     //~/suppliesAPI/receive/id/value/quantity/value
-    function receive(){
+    function receive_put(){
         $id = $this->get('id');
         $number = $this->get('quantity');
         $result = $this->supplies->add($id, $number);
@@ -66,7 +66,7 @@ class SuppliesAPI extends Rest_Controller {
     // REMOVES THE NUMBER OF PORTIONS (USED IN MAKING A RECIPE)
     //***NOTE: NUMBER PASSED IS THE NUMBER OF PORTIONS USED DUE TO RECIPES REQUIRING DIFFERENT AMOUNTS
     //~/suppliesAPI/take/id/value/quantity/value
-    function take(){
+    function take_put(){
         $id = $this->get('id');
         $number = $this->get('quantity');
         $result = $this->supplies->use($id, $number);
