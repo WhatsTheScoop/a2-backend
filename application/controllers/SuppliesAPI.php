@@ -8,12 +8,6 @@ class SuppliesAPI extends Rest_Controller {
 		parent::__construct();
 		$this->load->model('supplies');
 	}
-
-    //Valid
-    //  $this->response($result, 200);
-    // Invalid
-    //   $this->response(array('error' => 'Menu item not found!'), 404);
-
    
     //GET SPECIFIC INGREDIENTS
     //~/suppliesAPI/item/id/value
@@ -71,6 +65,48 @@ class SuppliesAPI extends Rest_Controller {
         $number = $this->get('quantity');
         $result = $this->supplies->use($id, $number);
         if ($result == 0)
+            $this->response(array('ok'), 200);
+        else
+            $this->response(array('error' => 'Ingredient not found!'), 404);      
+    }
+    //~/suppliesAPI/perBox/id/value/quantity/value
+    function perBox_put(){
+        $id = $this->get('id');
+        $number = $this->get('quantity');
+        //die(gettype($number));
+        $result = $this->supplies->perBoxChange($id,$number);
+        if ($result == 0)
+            $this->response(array('ok'), 200);
+        else
+            $this->response(array('error' => 'Ingredient not found!'), 404);      
+    }
+    //~/suppliesAPI/price/id/value/quantity/value
+    function price_put(){
+        $id = $this->get('id');
+        $number = $this->get('price');
+        $result = $this->supplies->priceChange($id, $number);
+        if ($result == 0)
+            $this->response(array('ok'), 200);
+        else
+            $this->response(array('error' => 'Ingredient not found!'), 404);      
+    }
+    //~/suppliesAPI/new/name/value/price/value/type/value/amount/value
+    function new_post(){
+        $name = $this->get('name');
+        $price = $this->get('price');
+        $type = $this->get('type');
+        $amount = $this->get('amount');
+        $onHand = "0";
+        $result = $this->supplies->create($name, $price, $type, $amount, $onHand);
+        if ($result == 0)
+            $this->response(array('ok'), 200);
+        else
+            $this->response(array('error' => 'Ingredient not found!'), 404);      
+    }
+    function delete_put(){
+        $id = $this->get('id');
+        $result = $this->supplies->delete($id);
+         if ($result == 0)
             $this->response(array('ok'), 200);
         else
             $this->response(array('error' => 'Ingredient not found!'), 404);      

@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `supplies`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `supplies` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   `price` double(4,2) NOT NULL,
   `type` varchar(32) NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE `supplies` (
 
 LOCK TABLES `supplies` WRITE;
 /*!40000 ALTER TABLE `supplies` DISABLE KEYS */;
-INSERT INTO `supplies` VALUES (1,'Waffle Cone',50.00,'container',60,10),(2,'Regular Cone',25.00,'container',60,10),(3,'Plastic Cup',15.00,'container',50,10),(4,'Vanilla',20.00,'icecream',45,10),(5,'Strawberry',20.00,'icecream',45,10),(6,'Chocolate',20.00,'icecream',45,10),(7,'Mint',25.00,'icecream',45,10),(8,'Maple',25.00,'icecream',45,10),(9,'Orange',25.00,'icecream',45,10),(10,'Sprinkles',18.00,'garnish',120,10),(11,'Walnuts',35.00,'garnish',85,0),(12,'Chocolate Chips',13.00,'GARNISH',100,10);
+INSERT INTO `supplies` VALUES (1,'Waffle Cone',50.00,'container',60,10),(2,'Regular Cone',25.00,'container',60,10),(3,'Plastic Cup',15.00,'container',50,10),(4,'Vanilla',20.00,'icecream',45,10),(5,'Strawberry',20.00,'icecream',45,10),(6,'Chocolate',20.00,'icecream',45,10),(7,'Mint',25.00,'icecream',45,10),(8,'Maple',25.00,'icecream',45,10),(9,'Orange',25.00,'icecream',45,10),(10,'Sprinkles',18.00,'garnish',120,10),(11,'Walnuts',35.00,'garnish',85,0),(12,'Chocolate Chips',13.00,'garnish',100,10);
 /*!40000 ALTER TABLE `supplies` ENABLE KEYS */;
 UNLOCK TABLES;
 
