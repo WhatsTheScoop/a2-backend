@@ -63,7 +63,8 @@ class SuppliesAPI extends Rest_Controller {
     function take_put(){
         $id = $this->get('id');
         $number = $this->get('quantity');
-        $result = $this->supplies->use($id, $number);
+        $result = $this->supplies->take_put
+        ($id, $number);
         if ($result == 0)
             $this->response(array('ok'), 200);
         else
