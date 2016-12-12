@@ -69,7 +69,7 @@ class Supplies extends CI_Model{
 		return 0;
 	}
 	//USE AN ITEM (REDUCE ONHAND)
-	public function use($id, $numTaken){
+	public function take($id, $numTaken){
 		$item = $this->db->query('SELECT * FROM supplies WHERE id = '. $id);
 		//check if id valid
 		if($item->row() == null){
